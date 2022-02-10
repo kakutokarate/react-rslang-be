@@ -32,6 +32,10 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
+app.get('/wordsAll', (req, res) => {
+  res.send(words);
+});
+
 app.use('/files', express.static(path.join(__dirname, '../files')));
 
 app.use(checkAuthentication);
@@ -74,9 +78,5 @@ userRouter.use('/:id/settings', userIdValidator, settingRouter);
 app.use((req, res, next) => next(createError(NOT_FOUND)));
 
 app.use(errorHandler);
-
-app.get('/wordsAll', (req, res) => {
-  res.send(words);
-});
 
 module.exports = app;
