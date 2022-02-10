@@ -23,6 +23,8 @@ const errorHandler = require('./errors/errorHandler');
 const checkAuthentication = require('./resources/authentication/checkAuthentication');
 const { userIdValidator } = require('./utils/validation/validator');
 
+import words from '../words/words.json';
+
 const app = express();
 const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
 
@@ -72,5 +74,9 @@ userRouter.use('/:id/settings', userIdValidator, settingRouter);
 app.use((req, res, next) => next(createError(NOT_FOUND)));
 
 app.use(errorHandler);
+
+app.get('/wordsAll', (req, res) => {
+  res.send(words);
+});
 
 module.exports = app;
