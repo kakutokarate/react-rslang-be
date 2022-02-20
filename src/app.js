@@ -22,7 +22,6 @@ const settingRouter = require('./resources/settings/setting.router');
 const errorHandler = require('./errors/errorHandler');
 const checkAuthentication = require('./resources/authentication/checkAuthentication');
 const { userIdValidator } = require('./utils/validation/validator');
-
 const { words } = require('../words/words.js');
 
 const app = express();
@@ -31,8 +30,6 @@ const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
-
-console.log('hey');
 
 app.get('/wordsAll', (req, res) => {
   res.send(words);
